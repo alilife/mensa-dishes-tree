@@ -36,40 +36,74 @@
     /* Set a max-height and allow vertical scrolling */
     .chart-container {
         max-height: 75vh;
-        overflow-y: auto;
+        overflow: auto; /* Changed to auto to handle both directions */
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-  <!-- Centered Header for First Chart -->
+  <!-- Header & Controls for First Chart -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="text-center">
-        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Mensa Dishes Hierarchy</h1>
-        <p class="mt-3 max-w-2xl mx-auto text-base text-slate-600">Click on the node groups to expand or collapse categories.</p>
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-2xl">Mensa Dishes Hierarchy</h1>
+      <p class="mt-3 max-w-2xl mx-auto text-base text-slate-600">Click on the node groups to expand or collapse categories.</p>
+      <div class="mt-6 flex justify-center">
+        <div class="flex items-center gap-2">
+          <button id="zoom-in-edible" class="w-7 h-7 flex items-center justify-center bg-white border border-slate-300 rounded-full shadow-sm cursor-pointer transition-colors hover:bg-slate-100" aria-label="Zoom in">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+          </button>
+          <button id="zoom-reset-edible" class="h-7 px-3 flex items-center justify-center bg-white border border-slate-300 rounded-full shadow-sm cursor-pointer transition-colors hover:bg-slate-100 text-sm font-medium text-slate-700" aria-label="Reset zoom">
+            Reset Zoom
+          </button>
+          <button id="zoom-out-edible" class="w-7 h-7 flex items-center justify-center bg-white border border-slate-300 rounded-full shadow-sm cursor-pointer transition-colors hover:bg-slate-100" aria-label="Zoom out">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Full-width Chart Container for First Chart -->
   <div class="px-4 sm:px-6 lg:px-8 pb-12 -mt-10">
-      <div class="chart-container bg-white rounded-2xl shadow-lg p-4 md:p-6 lg:p-8 w-full overflow-x-auto">
-          <div id="chart-edible"></div>
-      </div>
-  </div>
-
-  <!-- Centered Header for Second Chart -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="text-center">
-        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Non-edible Items</h1>
-        <p class="mt-3 max-w-2xl mx-auto text-base text-slate-600">Click on the node groups to expand or collapse categories.</p>
+    <div class="chart-container bg-white rounded-2xl shadow-lg p-4 md:p-6 lg:p-8">
+      <div id="chart-edible"></div>
     </div>
   </div>
 
-  <!-- Full-width Chart Container for Second Chart -->
-  <div class="px-4 sm:px-6 lg:px-8 pb-12 -mt-10">
-      <div class="chart-container bg-white rounded-2xl shadow-lg p-4 md:p-6 lg:p-8 w-full overflow-x-auto">
-          <div id="chart-non-edible"></div>
+  <!-- Header & Controls for Second Chart -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-2xl">Non-edible Items</h1>
+      <p class="mt-3 max-w-2xl mx-auto text-base text-slate-600">Click on the node groups to expand or collapse categories.</p>
+      <div class="mt-6 flex justify-center">
+        <div class="flex items-center gap-2">
+            <button id="zoom-in-non-edible" class="w-7 h-7 flex items-center justify-center bg-white border border-slate-300 rounded-full shadow-sm cursor-pointer transition-colors hover:bg-slate-100" aria-label="Zoom in">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+            </button>
+            <button id="zoom-reset-non-edible" class="h-7 px-3 flex items-center justify-center bg-white border border-slate-300 rounded-full shadow-sm cursor-pointer transition-colors hover:bg-slate-100 text-sm font-medium text-slate-700" aria-label="Reset zoom">
+              Reset Zoom
+            </button>
+            <button id="zoom-out-non-edible" class="w-7 h-7 flex items-center justify-center bg-white border border-slate-300 rounded-full shadow-sm cursor-pointer transition-colors hover:bg-slate-100" aria-label="Zoom out">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+              </svg>
+            </button>
+        </div>
       </div>
+    </div>
+  </div>
+  
+   <!-- Full-width Chart Container for Second Chart -->
+  <div class="px-4 sm:px-6 lg:px-8 pb-12 -mt-10">
+     <div class="chart-container bg-white rounded-2xl shadow-lg p-4 md:p-6 lg:p-8">
+      <div id="chart-non-edible"></div>
+     </div>
   </div>
   
   <!-- D3.js CDN -->
@@ -689,7 +723,7 @@
       ]
     };
 
-    function renderChart(chartData) {
+    function renderChart(chartId, chartData) {
       const marginTop = 20;
       const marginRight = 40; 
       const marginBottom = 20;
@@ -697,70 +731,76 @@
 
       const root = d3.hierarchy(chartData);
       
-      // --- Spacing Controls ---
-      const verticalGap = 20; // Base vertical gap between nodes.
-      const horizontalGap = 60; // Fixed horizontal gap between levels.
-
-      // We only use dx for nodeSize; dy is calculated manually for consistent spacing
-      const tree = d3.tree().nodeSize([verticalGap, 0]);
+      const tree = d3.tree().nodeSize([20, 0]);
       const diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x);
-
+      
       const svg = d3.create("svg")
           .attr("style", "font: 12px sans-serif;");
+
+      let currentK = 1.0;
+      let baseWidth = 0;
+      let baseHeight = 0;
 
       const gLink = svg.append("g");
       const gNode = svg.append("g").attr("cursor", "pointer").attr("pointer-events", "all");
 
+      function zoomIn() {
+        currentK *= 1.2;
+        svg.transition().duration(250)
+           .attr('width', baseWidth * currentK)
+           .attr('height', baseHeight * currentK);
+      }
+      
+      function zoomOut() {
+        currentK = Math.max(0.1, currentK * 0.8); // Prevent zooming out too far
+        svg.transition().duration(250)
+           .attr('width', baseWidth * currentK)
+           .attr('height', baseHeight * currentK);
+      }
+
+      function resetZoom() {
+        currentK = 1.0;
+        svg.transition().duration(250)
+           .attr('width', baseWidth)
+           .attr('height', baseHeight);
+      }
+
+      d3.select(`#zoom-in-${chartId}`).on('click', zoomIn);
+      d3.select(`#zoom-reset-${chartId}`).on('click', resetZoom);
+      d3.select(`#zoom-out-${chartId}`).on('click', zoomOut);
+
+
       function update(event, source, durationOverride) {
         const duration = durationOverride !== undefined ? durationOverride : (event?.altKey ? 2500 : 250);
         
-        // This is now a multi-pass process to prevent overlaps.
-        // Pass 1: Initial layout to get a baseline.
         tree(root);
 
-        // *** SELF-AWARE LAYOUT LOGIC STARTS HERE ***
-        
-        // Pass 2: Calculate the actual vertical "footprint" of each node's subtree.
-        // We traverse from the leaves up (post-order traversal).
         root.eachAfter(node => {
-          // For leaf nodes, the footprint is just the default vertical gap.
-          let PADDING = 10
+          let PADDING = 10;
+          const verticalGap = 20;
           if (!node.children) {
-            node.footprint = verticalGap + PADDING
+            node.footprint = verticalGap + PADDING;
           } else {
-            // For parent nodes, the footprint is the sum of its children's footprints.
             node.footprint = d3.sum(node.children, d => d.footprint);
           }
         });
 
-        // Pass 3: Re-calculate the vertical position (x) of each node.
-        // We traverse from the root down (pre-order traversal).
         root.each(node => {
           if (node.parent) {
-             // Start positioning from the parent's position.
             let startPos = node.parent.x - node.parent.footprint / 2;
-            
-            // Find this node's position in the sibling list.
             const siblingIndex = node.parent.children.indexOf(node);
-
-            // The node's position is the starting point plus the footprints of all preceding siblings.
             for (let i = 0; i < siblingIndex; i++) {
               startPos += node.parent.children[i].footprint;
             }
-            
-            // Center the node within its own footprint.
             node.x = startPos + node.footprint / 2;
           }
         });
-
-        // *** SELF-AWARE LAYOUT LOGIC ENDS HERE ***
-
 
         const nodes = root.descendants().reverse();
         const links = root.links();
 
         const node = gNode.selectAll("g").data(nodes, d => d.id);
-          
+        
         function collapseAll(node) {
           if (node.children) {
             node.children.forEach(collapseAll);
@@ -788,7 +828,7 @@
             d.textWidth = this.querySelector('text').getComputedTextLength();
         });
 
-        // Manually calculate y-positions for consistent horizontal spacing
+        const horizontalGap = 60;
         root.each(node => {
             if (node.parent) {
                 const parentOutgoingDotPosition = (node.parent.textWidth || 0) + 20;
@@ -798,7 +838,6 @@
             }
         });
 
-        // Calculate dynamic dimensions of the SVG based on the new layout.
         let x0 = Infinity;
         let x1 = -x0;
         root.each(d => {
@@ -816,18 +855,20 @@
         
         const height = x1 - x0 + marginTop + marginBottom;
         const width = y1 + marginLeft + marginRight;
+        
+        baseWidth = width;
+        baseHeight = height;
 
-        // Start the transition with the new dynamic dimensions.
         const transition = svg.transition()
             .duration(duration)
-            .attr("width", width)
-            .attr("height", height)
+            .attr("width", baseWidth * currentK)
+            .attr("height", baseHeight * currentK)
             .attr("viewBox", [-marginLeft, x0 - marginTop, width, height]);
 
         nodeUpdate.select(".outgoing-dot")
-            .attr("opacity", d => (d.children || d._children) ? 1 : 0)
-            .attr("cx", d => d.textWidth + 20);
-
+          .attr("opacity", d => (d._children || d.children) ? 1 : 0)
+          .attr("cx", d => d.textWidth + 20);
+          
         nodeUpdate.transition(transition)
             .attr("transform", d => `translate(${d.y},${d.x})`);
 
@@ -837,6 +878,7 @@
             .attr("stroke-opacity", 0);
 
         const link = gLink.selectAll("path").data(links, d => d.target.id);
+        
         const getOutgoingOffset = (d) => d.textWidth ? d.textWidth + 20 : 0;
         const linkEnter = link.enter().insert("path", "g")
             .attr("class", "link")
@@ -878,8 +920,8 @@
 
       return svg.node();
     }
-    document.getElementById("chart-edible").appendChild(renderChart(edibleData));
-    document.getElementById("chart-non-edible").appendChild(renderChart(nonEdibleData));
+    document.getElementById("chart-edible").appendChild(renderChart('edible', edibleData));
+    document.getElementById("chart-non-edible").appendChild(renderChart('non-edible', nonEdibleData));
   </script>
 </body>
 </html>
