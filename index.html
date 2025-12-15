@@ -108,619 +108,627 @@
   
   <!-- D3.js CDN -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script>
-    const edibleData = {
-      name: "Mensa Dishes",
-      children: [
-        {
-          name: "Plant-Based Foods",
-          children: [
-            {
-              name: "Legumes",
-              children: [
-                {
-                  name: "Salads (Insalata)",
-                  children: [
-                    {
-                      name: "Chickpea-Based (Ceci) Salads",
-                      children: [
-                        { name: "Insalata di ceci,carote,olive,patate e cipolla" },
-                        { name: "Insalata di ceci, carote,piselli,patate e pomodorini" },
-                        { name: "Insalata di ceci, rape, piselli e carote" },
-                        { name: "Insalata con ceci, olive e mais" },
-                        { name: "Insalata di legumi con verdure" }
-                      ]
-                    },
-                    {
-                      name: "Lentil-Based (Lenticchie) Salads",
-                      children: [
-                        { name: "Insalata con lenticchie, piselli, carote, mais e cipolla" },
-                        { name: "Insalata con lenticchie, carote, piselli e patate" },
-                        { name: "Insalata di fagioli, lenticchie, piselli e verdure" }
-                      ]
-                    },
-                    {
-                      name: "Bean-Based (Fagioli) Salads",
-                      children: [
-                        { name: "Insalata di fagioli, pomodori e cipolla" },
-                        { name: "insalata con fagioli e patate" },
-                        { name: "Insalata di fagioli di Lamon, cipolla bianca di Chioggia e radicchio rosso di Treviso" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  name: "Steamed Legumes",
-                  children: [
-                    { name: "Piselli al vapore" },
-                    { name: "Ceci al vapore" },
-                    { name: "Ceci, carote e piselli al vapore" },
-                    { name: "Lenticchie stufate" }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Cereals",
-              children: [
-                { 
-                  name: "Risotto (Creamy Rice)",
-                  children: [
-                    { name: "Risotto alía zucca e pancetta" },
-                    { name: "Risotto di zucca e Monte Veronese" }
-                  ] 
-                },
-                { 
-                  name: "Rice",
-                  children: [
-                    { name: "riso al pomodoro" },
-                    { name: "Riso pilaw al curry e piselli" },
-                    { name: "Riso all'inglese con ragu sauce" },
-                    { name: "Riso pilaw con piselli e carote" },
-                    { name: "Riso all'inglese" },
-                    { name: "Riso pilaw al curry con carote e piselli" },
-                    { name: "Riso alla milanese con piselli e peperoni" },
-                    { name: "Riso con pomodorini e basilico" }
-                  ]
-                },
-                { 
-                  name: "Barley (Orzo)",
-                  children: [
-                    { name: "Orzo con pomodorini e basilico" },
-				            { name: "Orzo con carote" }
-                  ]
-                },
-                { 
-                  name: "Mixed Cereals (Rice and Barley)",
-                  children: [
-                    { name: "Bis di cereali" },
-                    { name: "Bis di cereali con verdure" },
-                    { name: "Bis di cereali con carote e piselli" }
-                  ]
-                },
-                { 
-                  name: "Spelt (Farro)",
-                  children: [
-                    { name: "Farro con pomodirini e basilico" }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Vegetables",
-              children: [
-                { 
-                  name: "Eggplant-Based",
-                  children: [
-                    { name: "Canape di melanzane vegano" },
-                    { name: "Melanzane al funghetto" },
-                    { name: "Canape di melanzane con acciughe" },
-                    { name: "Caponata di verdure" }
-                  ]
-                },
-                { 
-                  name: "Potato-Based",
-                  children: [
-                    { name: "French fries" },
-                    { name: "Patate all’extravergine" },
-                    { name: "Patate al basilico" },
-                    { name: "Patate al forno con cipolla e peperoni" },
-                    { name: "Gateau di patate, funghi e mozzarella" },
-                    { name: "Patate prezzemolate" },
-                    { name: "Steamed patatoes" },
-                    { name: "Patate alla napoletana" }
-                  ]
-                },
-                { 
-                  name: "Mixed Vegetables",
-                  children: [
-                    {
-                      name: "Soups",
-                      children: [
-                        { name: "Zuppa di verdure" },
-                        { name: "passato di verdure" }
-                      ]
-                    },
-                    {
-                      name: "Steamed Vegtables",
-                      children: [
-                        { name: "Carote al vapore" },
-                        { name: "Fagiolini al vapore" },
-                        { name: "Carote e fagiolini" },
-                        { name: "Carote e piselli al vapore" },
-                        { name: "Cavolfiori al vapore" },
-                        { name: "Cavolfiore parmigiana" },
-                        { name: "Tris di verdure con fagiolini" },
-                        { name: "Tris di verdure al vapore" },
-                        { name: "Radicchio con asiago" },
-                        { name: "Finocchi all'arancia" },
-                        { name: "Verze stufate" },
-                        { name: "Pomodorini" }
-                      ]
-                    },
-                    {
-                      name: "Fresh Vegetables",
-                      children: [
-                        { name: "Salad" },
-                        { name: "Buffet di verdure fresche" },
-                        { name: "Peperoni" }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Plant-Based Creams",
-              children: [
-                {
-                  name: "Vegetable-based Creams",
-                  children: [
-                    { name: "Crema di patate" },
-                    { name: "Crema di porri" },
-                    { name: "Crema di cavolfiori" },
-                    { name: "Crema di carote e patate" },
-                    { name: "Crema di funghi" },
-                    { name: "Crema di carciofi" }
-                  ]
-                },
-                {
-                  name: "Legume-based Creams",
-                  children: [
-                    { name: "Crema di fagioli" },
-                    { name: "Crema di legumi" }
-                  ]
-                },
-                {
-                  name: "Polenta",
-                  children: [
-                    { name: "Polenta con funghi e formaggio Asiago" },
-                    { name: "Polenta" }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Fruits",
-              children: [
-                {
-                  name: "Banana",
-                  children: [
-                    { name: "Banana" },
-                    { name: "Banana peel" }
-                  ]
-                },
-                {
-                  name: "Apple",
-                  children: [
-                    { name: "Apple" },
-                    { name: "Apple peels" }
-                  ]
-                },
-                {
-                  name: "Plum",
-                  children: [
-                    { name: "Plum" },
-                    { name: "Plum peels" },
-                    { name: "Plum Seeds" }
-                  ]
-                },
-                {
-                  name: "Kiwi",
-                  children: [
-                    { name: "Kiwi peels" }
-                  ]
-                },
-                {
-                  name: "Orange",
-                  children: [
-                    { name: "Orange" },
-                    { name: "Orange peels" }
-                  ]
-                },
-                {
-                  name: "Lemon",
-                  children: [
-                    { name: "Lemon" }
-                  ]
-                },
-                {
-                  name: "Olive",
-                  children: [
-                    { name: "Olives" }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Fungi",
-              children: [
-                { name: "Mushrooms" }
-              ] 
-            }
-          ]
-        },
-        {
-          name: "Animal-Based Foods",
-          children: [
-            { 
-              name: "Meat",
-              children: [
-                {
-                  name: "Red Meat and White meat",
-                  children: [
-                    {
-                      name: "Meat Cuts",
-                      children: [
-                        { name: "tacchino arrosto" },
-                        { name: "Tacchino arrosto con funghi" },
-                        { name: "Braciola di maiale alla griglia" }
-                      ]
-                    },
-                    {
-                      name: "Whole Meat with Bones",
-                      children: [
-                        { name: "Pollo al forno" },
-                        { name: "Brasato di manzo" },
-                        { name: "Costicine di maiale al forno" }
-                      ]
-                    },
-                    {
-                      name: "Meat Stews",
-                      children: [
-                        { name: "Goulash all'ungherese" },
-                        { name: "Bocconcini di tacchino con curry e piselli" },
-                        { name: "Arrosti misti" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  name: "Seafood",
-                  children: [
-                    {
-                      name: "Fish",
-                      children: [
-                        {
-                          name: "Verdesca (Blue Shark)",
-                          children: [
-                            { name: "Verdesca con zucchine" },
-                            { name: "Verdesca con pomodorini confit" },
-                            { name: "Verdesca con olive" },
-                            { name: "Verdesca al prezzemolo" }
-                          ]
-                        },
-                        {
-                          name: "Merluzzo (Cod Fish)",
-                          children: [
-                            { name: "Filetti di merluzzo in crosta di patate" },
-                            { name: "Filetti di merluzzo in crosta di zucchine" },
-                            { name: "Filetti di merluzzo panato" },
-                            { name: "Baccala alla vicentina" }
-                          ]
-                        },
-                        {
-                          name: "Scorfano (Scorpionfish)",
-                          children: [
-                            { name: "Filetti di scorfano alla Marchigiana" },
-                            { name: "Filetti di scorfano alla Grenoblese" },
-                            { name: "Filetti di scorfano con olive" }
-                          ]
-                        },
-                        {
-                          name: "platessa (Plaice)",
-                          children: [
-                            { name: "Filetti di platessa al limone" },
-                            { name: "Filetti con olive e capperi" }
-                          ]
-                        },
-                        {
-                          name: "Salmone (Salmon)",
-                          children: [
-                            { name: "Salmon con pomodorini" },
-                            { name: "Salmone alla griglia con pomodorini" }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Cephalopods",
-                      children: [
-                        { name: "Piovre alla ligure" }
-                      ]
-                    },
-                    {
-                      name: "Seafood Stews",
-                      children: [
-                        { name: "Seppie in umido con piselli" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  name: "Processed and Prepared Meat",
-                  children: [
-                    {
-                      name: "Burgers",
-                      children: [
-                        { name: "Hamburger bio di manzo" }
-                      ]
-                    },
-                    {
-                      name: "Cutlets",
-                      children: [
-                        { name: "Cordon Bleu" },
-                        { name: "Cotoletta di pollo" }
-                      ]
-                    },
-                    {
-                      name: "Sausages",
-                      children: [
-                        { name: "Cotechino in crosta di sfoglia alla senape" }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Egg-Based",
-              children: [
-                { name: "Frittata ai formaggi" },
-                { name: "Frittata con erbette" },
-                { name: "Frittata di verdure" }
-              ]
-            },
-            { 
-              name: "Dairy",
-              children: [
-                {
-                  name: "Cheese-Based",
-                  children: [
-                    {
-                      name: "Mozzarella",
-                      children: [
-                        { name: "Mozzarella alla romana con acciughe" },
-                        { name: "Mozzarella Provatura" },
-                        { name: "Mozzarella alla romana" },
-                        { name: "Peperoni alla partenopea" }
-                      ]
-                    },
-                    {
-                      name: "Cheese",
-                      children: [
-                        { name: "Cheese" }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          name: "Processed and Prepared Foods",
-          children: [
-            { 
-              name: "Pasta",
-              children: [
-                {
-                  name: "Pasta with Red Sauce",
-                  children: [
-                    { name: "Spadellata con ricotta e pomodoro" },
-                    { name: "Spadellata all'arrabbiata" },
-                    { name: "Spadellata alla puttanesca" },
-                    { name: "Pasta al pomodoro" },
-                    { name: "Pasta al ragu" },
-                    { name: "Pasta con zucchine e speck" },
-                    { name: "Pasta con zucchine e pancetta" },
-                    { name: "Caserecce con salsa misto funghi" },
-                    { name: "Spadellata alla calabrese" },
-                    { name: "Spadellata con ricotta pomodoro e pesto di rucola" },
-                    { name: "Spadellata con broccoli e pomodoro" },
-                    { name: "Spadellata con salsiccia e funghi" },
-                    { name: "Spadellata alla piemontese con ragu" },
-                    { name: "Spadellata alla petroniana" },
-                    { name: "Spadellata alla Norma" },
-                    { name: "Spadellata all'amatriciana" }
-                  ]
-                },
-                {
-                  name: "Pasta with White Sauce",
-                  children: [
-                    { name: "Spadellata alla carbonara" },
-                    { name: "Spadellata al pesto di rucola" },
-                    { name: "Pasta alla siciliana" },
-                    { name: "Pasta" }
-                  ]
-                },
-                {
-                  name: "Pasta with Cream",
-                  children: [
-                    { name: "Pasta e fagioli alla veneta" }
-                  ]
-                },
-                {
-                  name: "Stuffed Pasta",
-                  children: [
-                    { name: "Tortellini in brodo" }
-                  ]
-                },
-                {
-                  name: "Gnocchi",
-                  children: [
-                    { name: "Gnocchi al pesto" }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Cuscus",
-              children: [
-                { name: "Cous cous di verdure" }
-              ]
-            },
-            { 
-              name: "Baked Products",
-              children: [
-                {
-                  name: "Breads and Cakes",
-                  children: [
-                    { name: "Bread" },
-                    { name: "Pandoro" },
-                    { name: "Crostini" }
-                  ]
-                },
-                {
-                  name: "Pizzas",
-                  children: [
-                    { name: "Pizza Crust" },
-                    { name: "Trancio di pizza margherita" },
-                    { name: "Trancio di pizza ai funghi" }
-                  ]
-                },
-                {
-                  name: "Tarts",
-                  children: [
-                    { name: "Tortino ricotta e spinaci" }
-                  ]
-                }
-              ]
-            },
-            { 
-              name: "Plant-Based Meat Alternatives",
-              children: [
-                { name: "Hamburger vegano" }
-              ]
-            }
-          ]
-        }
-      ]
-    };
+<script>
+  const edibleData = {
+    name: "Mensa Dishes",
+    children: [
+      {
+        name: "Plant-Based Foods",
+        children: [
+          {
+            name: "Legumes",
+            children: [
+              {
+                name: "Salads (Insalata)",
+                children: [
+                  {
+                    name: "Chickpea-Based (Ceci) Salads",
+                    children: [
+                      { name: "Insalata di ceci,carote,olive,patate e cipolla" },
+                      { name: "Insalata di ceci, carote,piselli,patate e pomodorini" },
+                      { name: "Insalata di ceci, rape, piselli e carote" },
+                      { name: "Insalata con ceci, olive e mais" },
+                      { name: "Insalata di legumi con verdure" }
+                    ]
+                  },
+                  {
+                    name: "Lentil-Based (Lenticchie) Salads",
+                    children: [
+                      { name: "Insalata con lenticchie, piselli, carote, mais e cipolla" },
+                      { name: "Insalata con lenticchie, carote, piselli e patate" },
+                      { name: "Insalata di fagioli, lenticchie, piselli e verdure" }
+                    ]
+                  },
+                  {
+                    name: "Bean-Based (Fagioli) Salads",
+                    children: [
+                      { name: "Insalata di fagioli, pomodori e cipolla" },
+                      { name: "insalata con fagioli e patate" },
+                      { name: "Insalata di fagioli di Lamon, cipolla bianca di Chioggia e radicchio rosso di Treviso" }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "Steamed Legumes",
+                children: [
+                  { name: "Piselli al vapore" },
+                  { name: "Ceci al vapore" },
+                  { name: "Ceci, carote e piselli al vapore" },
+                  { name: "Lenticchie stufate" }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Cereals",
+            children: [
+              { 
+                name: "Risotto (Creamy Rice)",
+                children: [
+                  { name: "Risotto alía zucca e pancetta" },
+                  { name: "Risotto di zucca e Monte Veronese" }
+                ] 
+              },
+              { 
+                name: "Rice",
+                children: [
+                  { name: "riso al pomodoro" },
+                  { name: "Riso pilaw al curry e piselli" },
+                  { name: "Riso all'inglese con ragu sauce" },
+                  { name: "Riso pilaw con piselli e carote" },
+                  { name: "Riso all'inglese" },
+                  { name: "Riso pilaw al curry con carote e piselli" },
+                  { name: "Riso alla milanese con piselli e peperoni" },
+                  { name: "Riso con pomodorini e basilico" }
+                ]
+              },
+              { 
+                name: "Barley (Orzo)",
+                children: [
+                  { name: "Orzo con pomodorini e basilico" },
+                  { name: "Orzo con carote" }
+                ]
+              },
+              { 
+                name: "Mixed Cereals (Rice and Barley)",
+                children: [
+                  { name: "Bis di cereali" },
+                  { name: "Bis di cereali con verdure" },
+                  { name: "Bis di cereali con carote e piselli" }
+                ]
+              },
+              { 
+                name: "Spelt (Farro)",
+                children: [
+                  { name: "Farro con pomodirini e basilico" }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Vegetables",
+            children: [
+              { 
+                name: "Eggplant-Based",
+                children: [
+                  { name: "Canape di melanzane vegano" },
+                  { name: "Melanzane al funghetto" },
+                  { name: "Canape di melanzane con acciughe" },
+                  { name: "Caponata di verdure" }
+                ]
+              },
+              { 
+                name: "Potato-Based",
+                children: [
+                  { name: "French fries" },
+                  { name: "Patate all’extravergine" },
+                  { name: "Patate al basilico" },
+                  { name: "Patate al forno con cipolla e peperoni" },
+                  { name: "Gateau di patate, funghi e mozzarella" },
+                  { name: "Patate prezzemolate" },
+                  { name: "Steamed patatoes" },
+                  { name: "Patate alla napoletana" }
+                ]
+              },
+              { 
+                name: "Mixed Vegetables",
+                children: [
+                  {
+                    name: "Soups",
+                    children: [
+                      { name: "Zuppa di verdure" },
+                      { name: "passato di verdure" }
+                    ]
+                  },
+                  {
+                    name: "Steamed Vegtables",
+                    children: [
+                      { name: "Carote al vapore" },
+                      { name: "Fagiolini al vapore" },
+                      { name: "Carote e fagiolini" },
+                      { name: "Carote e piselli al vapore" },
+                      { name: "Cavolfiori al vapore" },
+                      { name: "Cavolfiore parmigiana" },
+                      { name: "Tris di verdure con fagiolini" },
+                      { name: "Tris di verdure al vapore" },
+                      { name: "Radicchio con asiago" },
+                      { name: "Finocchi all'arancia" },
+                      { name: "Verze stufate" },
+                      { name: "Pomodorini" }
+                    ]
+                  },
+                  {
+                    name: "Fresh Vegetables",
+                    children: [
+                      { name: "Salad" },
+                      { name: "Buffet di verdure fresche" },
+                      { name: "Peperoni" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Plant-Based Creams",
+            children: [
+              {
+                name: "Vegetable-based Creams",
+                children: [
+                  { name: "Crema di patate" },
+                  { name: "Crema di porri" },
+                  { name: "Crema di cavolfiori" },
+                  { name: "Crema di carote e patate" },
+                  { name: "Crema di funghi" },
+                  { name: "Crema di carciofi" }
+                ]
+              },
+              {
+                name: "Legume-based Creams",
+                children: [
+                  { name: "Crema di fagioli" },
+                  { name: "Crema di legumi" }
+                ]
+              },
+              {
+                name: "Polenta",
+                children: [
+                  { name: "Polenta con funghi e formaggio Asiago" },
+                  { name: "Polenta" }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Fruits",
+            children: [
+              {
+                name: "Banana",
+                children: [
+                  { name: "Banana" },
+                  { name: "Banana peel" }
+                ]
+              },
+              {
+                name: "Apple",
+                children: [
+                  { name: "Apple" },
+                  { name: "Apple peels" }
+                ]
+              },
+              {
+                name: "Plum",
+                children: [
+                  { name: "Plum" },
+                  { name: "Plum peels" },
+                  { name: "Plum Seeds" }
+                ]
+              },
+              {
+                name: "Kiwi",
+                children: [
+                  { name: "Kiwi peels" }
+                ]
+              },
+              {
+                name: "Orange",
+                children: [
+                  { name: "Orange" },
+                  { name: "Orange peels" }
+                ]
+              },
+              {
+                name: "Lemon",
+                children: [
+                  { name: "Lemon" }
+                ]
+              },
+              {
+                name: "Olive",
+                children: [
+                  { name: "Olives" }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Fungi",
+            children: [
+              { name: "Mushrooms" }
+            ] 
+          }
+        ]
+      },
+      {
+        name: "Animal-Based Foods",
+        children: [
+          { 
+            name: "Meat",
+            children: [
+              {
+                name: "Red Meat and White meat",
+                children: [
+                  {
+                    name: "Meat Cuts",
+                    children: [
+                      { name: "tacchino arrosto" },
+                      { name: "Tacchino arrosto con funghi" },
+                      { name: "Braciola di maiale alla griglia" }
+                    ]
+                  },
+                  {
+                    name: "Whole Meat with Bones",
+                    children: [
+                      { name: "Pollo al forno" },
+                      { name: "Brasato di manzo" },
+                      { name: "Costicine di maiale al forno" }
+                    ]
+                  },
+                  {
+                    name: "Meat Stews",
+                    children: [
+                      { name: "Goulash all'ungherese" },
+                      { name: "Bocconcini di tacchino con curry e piselli" },
+                      { name: "Arrosti misti" }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "Seafood",
+                children: [
+                  {
+                    name: "Fish",
+                    children: [
+                      {
+                        name: "Verdesca (Blue Shark)",
+                        children: [
+                          { name: "Verdesca con zucchine" },
+                          { name: "Verdesca con pomodorini confit" },
+                          { name: "Verdesca con olive" },
+                          { name: "Verdesca al prezzemolo" }
+                        ]
+                      },
+                      {
+                        name: "Merluzzo (Cod Fish)",
+                        children: [
+                          { name: "Filetti di merluzzo in crosta di patate" },
+                          { name: "Filetti di merluzzo in crosta di zucchine" },
+                          { name: "Filetti di merluzzo panato" },
+                          { name: "Baccala alla vicentina" }
+                        ]
+                      },
+                      {
+                        name: "Scorfano (Scorpionfish)",
+                        children: [
+                          { name: "Filetti di scorfano alla Marchigiana" },
+                          { name: "Filetti di scorfano alla Grenoblese" },
+                          { name: "Filetti di scorfano con pomodoro" },
+                          { name: "Filetti di scorfano con olive" }
+                        ]
+                      },
+                      {
+                        name: "platessa (Plaice)",
+                        children: [
+                          { name: "Filetti di platessa al limone" },
+                          { name: "Filetti con olive e capperi" }
+                        ]
+                      },
+                      {
+                        name: "Salmone (Salmon)",
+                        children: [
+                          { name: "Salmon con pomodorini" },
+                          { name: "Salmone alla griglia con pomodorini" }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    name: "Cephalopods",
+                    children: [
+                      { name: "Piovre alla ligure" }
+                    ]
+                  },
+                  {
+                    name: "Seafood Stews",
+                    children: [
+                      { name: "Seppie in umido con piselli" }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "Processed and Prepared Meat",
+                children: [
+                  {
+                    name: "Burgers",
+                    children: [
+                      { name: "Hamburger bio di manzo" }
+                    ]
+                  },
+                  {
+                    name: "Cutlets",
+                    children: [
+                      { name: "Cordon Bleu" },
+                      { name: "Cotoletta di pollo" }
+                    ]
+                  },
+                  {
+                    name: "Sausages",
+                    children: [
+                      { name: "Cotechino in crosta di sfoglia alla senape" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Egg-Based",
+            children: [
+              { name: "Frittata ai formaggi" },
+              { name: "Frittata con erbette" },
+              { name: "Frittata di verdure" }
+            ]
+          },
+          { 
+            name: "Dairy",
+            children: [
+              {
+                name: "Cheese-Based",
+                children: [
+                  {
+                    name: "Mozzarella",
+                    children: [
+                      { name: "Mozzarella alla romana con acciughe" },
+                      { name: "Mozzarella Provatura" },
+                      { name: "Mozzarella alla romana" },
+                      { name: "Peperoni alla partenopea" }
+                    ]
+                  },
+                  {
+                    name: "Cheese",
+                    children: [
+                      { name: "Cheese" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Processed and Prepared Foods",
+        children: [
+          { 
+            name: "Pasta",
+            children: [
+              {
+                name: "Pasta with Red Sauce",
+                children: [
+                  { name: "Spadellata con ricotta e pomodoro" },
+                  { name: "Spadellata all'arrabbiata" },
+                  { name: "Spadellata alla puttanesca" },
+                  { name: "Pasta al pomodoro" },
+                  { name: "Pasta al ragu" },
+                  { name: "Pasta con zucchine e speck" },
+                  { name: "Pasta con zucchine e pancetta" },
+                  { name: "Caserecce con salsa misto funghi" },
+                  { name: "Spadellata alla calabrese" },
+                  { name: "Spadellata con ricotta pomodoro e pesto di rucola" },
+                  { name: "Spadellata con broccoli e pomodoro" },
+                  { name: "Spadellata con salsiccia e funghi" },
+                  { name: "Spadellata alla piemontese con ragu" },
+                  { name: "Spadellata alla petroniana" },
+                  { name: "Spadellata alla Norma" },
+                  { name: "Spadellata all'amatriciana" }
+                ]
+              },
+              {
+                name: "Pasta with White Sauce",
+                children: [
+                  { name: "Spadellata alla carbonara" },
+                  { name: "Spadellata al pesto di rucola" },
+                  { name: "Pasta alla siciliana" },
+                  { name: "Pasta" }
+                ]
+              },
+              {
+                name: "Pasta with Cream",
+                children: [
+                  { name: "Pasta e fagioli alla veneta" }
+                ]
+              },
+              {
+                name: "Stuffed Pasta",
+                children: [
+                  { name: "Tortellini in brodo" }
+                ]
+              },
+              {
+                name: "Gnocchi",
+                children: [
+                  { name: "Gnocchi al pesto" }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Cuscus",
+            children: [
+              { name: "Cous cous di verdure" }
+            ]
+          },
+          { 
+            name: "Baked Products",
+            children: [
+              {
+                name: "Breads and Cakes",
+                children: [
+                  { name: "Bread" },
+                  { name: "Pandoro" },
+                  { name: "Crostini" }
+                ]
+              },
+              {
+                name: "Pizzas",
+                children: [
+                  { name: "Pizza Crust" },
+                  { name: "Trancio di pizza margherita" },
+                  { name: "Trancio di pizza ai funghi" }
+                ]
+              },
+              {
+                name: "Tarts",
+                children: [
+                  { name: "Tortino ricotta e spinaci" }
+                ]
+              }
+            ]
+          },
+          { 
+            name: "Plant-Based Meat Alternatives",
+            children: [
+              { name: "Hamburger vegano" }
+            ]
+          },
+          {
+            name: "Condiments / Sauces",
+            children: [
+              { name: "Ketchup" },
+              { name: "Mayonnaise" }
+            ]
+          }
+        ]
+      }
+    ]
+  };
 
-    const nonEdibleData = {
-      name: "Non-edible Items",
-      children: [
-        {
-          name: "Calibration",
-          children: [
-            {
-              name: "Tray",
-              children: [
-                { name: "Calibration-tray" }
-              ]
-            },
-            {
-              name: "Plates",
-              children: [
-                {
-                  name: "Food Plate",
-                  children: [
-                    { name: "Calibration-flat-plate" },
-                    { name: "Calibration-deeper-plate" }
-                  ]
-                },
-                {
-                  name: "Salad Plate",
-                  children: [
-                    { name: "Calibration-salad-plate" }
-                  ]
-                }
-              ]
-            },
-            {
-              name: "Sheet",
-              children: [
-                { name: "Calibration-sheet" }
-              ]
-            }
-          ]
-        },
-        {
-          name: "Plastic",
-          children: [
-            {
-              name: "Plastic Sachets",
-              children: [
-                { name: "Olive oil sachet" },
-                { name: "Vinegar Sachet" },
-                { name: "Mayonnaise sachet" },
-                { name: "Ketchup Sachet" }
-              ]
-            },
-            {
-              name: "Plastic Cutlery",
-              children: [
-                { name: "Stir Stick" },
-                { name: "Plastic Spoon" }
-              ]
-            },
-            {
-              name: "Plastic Containers",
-              children: [
-                { name: "Pudding container" },
-                { name: "Coffee cup" },
-                { name: "Plastic glass" }
-              ]
-            }
-          ]
-        },
-        {
-          name: "Paper",
-          children: [
-            {
-              name: "Paper Sachet",
-              children: [
-                { name: "Salt sachet" },
-                { name: "Sugar sachet" },
-                { name: "Toothpick Sachet" },
-                { name: "Stir Stick Wrapper" }
-              ]
-            },
-            {
-              name: "Processed Paper",
-              children: [
-                { name: "Tissue" },
-                { name: "Receipt" }
-              ]
-            }
-          ]
-        },
-        {
-          name: "Aluminum foil",
-          children: [
-            { name: "Pudding lid" },
-            { name: "Fruit Pulp Cover" }
-          ]
-        },
-        {
-          name: "Wood",
-          children: [
-            { name: "Toothpick" }
-          ]
-        }
-      ]
-    };
+  const nonEdibleData = {
+    name: "Non-edible Items",
+    children: [
+      {
+        name: "Calibration",
+        children: [
+          {
+            name: "Tray",
+            children: [
+              { name: "Calibration-tray" }
+            ]
+          },
+          {
+            name: "Plates",
+            children: [
+              {
+                name: "Food Plate",
+                children: [
+                  { name: "Calibration-flat-plate" },
+                  { name: "Calibration-deeper-plate" }
+                ]
+              },
+              {
+                name: "Salad Plate",
+                children: [
+                  { name: "Calibration-salad-plate" }
+                ]
+              }
+            ]
+          },
+          {
+            name: "Sheet",
+            children: [
+              { name: "Calibration-sheet" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Plastic",
+        children: [
+          {
+            name: "Plastic Sachets",
+            children: [
+              { name: "Olive oil sachet" },
+              { name: "Vinegar Sachet" },
+              { name: "Mayonnaise sachet" },
+              { name: "Ketchup Sachet" }
+            ]
+          },
+          {
+            name: "Plastic Cutlery",
+            children: [
+              { name: "Stir Stick" },
+              { name: "Plastic Spoon" }
+            ]
+          },
+          {
+            name: "Plastic Containers",
+            children: [
+              { name: "Pudding container" },
+              { name: "Coffee cup" },
+              { name: "Plastic glass" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Paper",
+        children: [
+          {
+            name: "Paper Sachet",
+            children: [
+              { name: "Salt sachet" },
+              { name: "Sugar sachet" },
+              { name: "Toothpick Sachet" },
+              { name: "Stir Stick Wrapper" }
+            ]
+          },
+          {
+            name: "Processed Paper",
+            children: [
+              { name: "Tissue" },
+              { name: "Receipt" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Aluminum foil",
+        children: [
+          { name: "Pudding lid" },
+          { name: "Fruit Pulp Cover" }
+        ]
+      },
+      {
+        name: "Wood",
+        children: [
+          { name: "Toothpick" }
+        ]
+      }
+    ]
+  };
 
     function renderChart(chartId, chartData) {
       const marginTop = 20;
@@ -924,5 +932,6 @@
   </script>
 </body>
 </html>
+
 
 
